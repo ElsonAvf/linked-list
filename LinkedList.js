@@ -103,6 +103,17 @@ class LinkedList {
     }
     return null
   }
+  
+  toString() {
+    let node = this._head;
+    let str = ''
+    while (node !== null) {
+      str += `(${node.value}) -> `
+      node = node.nextNode
+    }
+    str += 'null'
+    return str
+  }
 }
 
 let node = new LinkedList();
@@ -110,4 +121,4 @@ node.prepend('chico')
 node.append('blablabla')
 node.append(299)
 node.append(false)
-console.log(node.find('bile'))
+console.log(node.toString())
