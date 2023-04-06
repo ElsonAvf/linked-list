@@ -1,4 +1,3 @@
-
 class Node {
   constructor(value) {
     this.value = value || null;
@@ -64,9 +63,27 @@ class LinkedList {
     } while (node !== null)
     return -1
   }
+  
+  pop() {
+    if (this._head === null || this._head.nextNode === null) {
+      this._head = null
+      this._size = 0
+      return
+    }
+    let node = this._head;
+    let previousNode;
+    while (node.nextNode !== null) {
+      previousNode = node;
+      node = node.nextNode
+    }
+    previousNode.nextNode = null
+    this._size--
+  }
 }
 
 let node = new LinkedList();
 node.prepend({nome: 'chico', idade: 44})
-console.log(node.tail())
+node.append('blablabla')
+node.append(299)
+console.log(node._head)
 
