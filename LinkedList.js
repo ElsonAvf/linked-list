@@ -32,7 +32,7 @@ class LinkedList {
   prepend(value) {
     let oldNode = this._head;
     this._head = new Node(value);
-    this.head.nextNode = oldNode;
+    this._head.nextNode = oldNode;
     this._size++
   }
   
@@ -114,11 +114,48 @@ class LinkedList {
     str += 'null'
     return str
   }
+  
+  insertAt(value, index) {
+    if (index === 0) {
+      this.prepend(value)
+      return
+    }
+    let node = this._head.nextNode;
+    let previousNode = this._head;
+    let currentIndex = 1
+    while (node !== null || index === currentIndex) {
+      if (index === currentIndex) {
+        previousNode.nextNode = new Node(value)
+        previousNode.nextNode.nextNode = node
+        this._size++
+        return
+      }
+      previousNode = node
+      node = node.nextNode
+      currentIndex++
+    }
+    return null
+  }
+  
+  removeAt(index) {
+    if (this._head === null) {
+      return null
+    }
+    if (index === 0) {
+      this._head = this._head.nextNode
+    }
+    let node = this._head.nextNode;
+    let previousNode = this._head;
+    let currentIndex = 1
+    while (node !== null) {
+      if (index  === currentIndex) {
+        previousNode.nextNode = node.nextNode
+        this._size--
+      }
+      previousNode = node;
+      node = node.nextNode
+      currentIndex++
+    }
+    return null
+  }
 }
-
-let node = new LinkedList();
-node.prepend('chico')
-node.append('blablabla')
-node.append(299)
-node.append(false)
-console.log(node.toString())
