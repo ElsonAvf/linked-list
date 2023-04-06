@@ -90,11 +90,24 @@ class LinkedList {
     }
     return false
   }
+  
+  find(value) {
+    let node = this._head;
+    let index = 0;
+    while (node !== null) {
+      if (value === node.value) {
+        return index
+      }
+      node = node.nextNode
+      index++
+    }
+    return null
+  }
 }
 
 let node = new LinkedList();
-node.prepend({nome: 'chico', idade: 44})
+node.prepend('chico')
 node.append('blablabla')
 node.append(299)
 node.append(false)
-console.log(node.contains(false))
+console.log(node.find('bile'))
