@@ -1,6 +1,6 @@
 class Node {
   constructor(value) {
-    this.value = value || null;
+    this.value = (value !== undefined) ? value : null;
     this.nextNode = null;
   }
 }
@@ -79,11 +79,22 @@ class LinkedList {
     previousNode.nextNode = null
     this._size--
   }
+  
+  contains(value) {
+    let node = this._head;
+    while (node !== null) {
+      if (value === node.value) {
+        return true
+      }
+      node = node.nextNode
+    }
+    return false
+  }
 }
 
 let node = new LinkedList();
 node.prepend({nome: 'chico', idade: 44})
 node.append('blablabla')
 node.append(299)
-console.log(node._head)
-
+node.append(false)
+console.log(node.contains(false))
